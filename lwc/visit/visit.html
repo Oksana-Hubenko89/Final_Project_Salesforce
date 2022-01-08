@@ -97,14 +97,14 @@
                 <div class="slds-modal__container">
                     <!-- modal header -->
                     <header class="slds-modal__header">
-                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModalAdd}>
                             <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
                         </button>
                         <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate" if:true={isAddForm}>Add Visit</h2>
                     </header>
                     <!-- showing record add form -->
                     <div if:true={isAddForm} class="slds-theme_default">
-                        <lightning-record-edit-form layout-type="Full" record-id={currentRecordIdd} object-api-name="Visit__c" onsubmit={AddVisit} onsuccess= {handleSuccess}>
+                        <lightning-record-edit-form layout-type="Full"  object-api-name="Visit__c" onsubmit={AddVisit} onsuccess= {handleSuccess}>
                             <lightning-messages></lightning-messages>
                             <lightning-input-field field-name="Kid__c"></lightning-input-field>
                             <lightning-input-field field-name="Who_was_with_kid__c"></lightning-input-field><br/>

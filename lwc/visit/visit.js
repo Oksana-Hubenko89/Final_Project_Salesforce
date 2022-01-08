@@ -126,6 +126,8 @@ export default class Visit extends LightningElement {
     }
     closeModal() {
         this.bShowModal = false;
+    }
+    closeModalAdd() {
         this.aShowModal = false;
     }
 
@@ -137,7 +139,7 @@ export default class Visit extends LightningElement {
     addCurrentRecord(currentRow) {
         this.aShowModal = true;
         this.isAddForm = true;
-        this.currentRecordIdd = currentRow.Id;
+
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -167,20 +169,17 @@ export default class Visit extends LightningElement {
         currentRecord.push(currentRow.Id);
         this.showLoadingSpinner = true;
 
-        // calling apex class method to delete the selected contact
         deleteVisits({visitsIds: currentRecord})
             .then(result => {
                 window.console.log('result ====> ' + result);
                 this.showLoadingSpinner = false;
 
-                // showing success message
                 this.dispatchEvent(new ShowToastEvent({
                     title: 'Success!!',
                     message:' Visit deleted.',
                     variant: 'success'
                 }),);
 
-                // refreshing table data using refresh apex
                 return refreshApex(this.refreshTable);
 
             })
@@ -194,28 +193,4 @@ export default class Visit extends LightningElement {
             });
     }
 
-    /* addVisit(event){
-         event.preventDefault();
-         this.template.querySelector('lightning-record-edit-form').submit(event.detail.fields);
-         this.aShowModal = false;
-         addNewVisit({visitId: this.recordId, visit: event.detail.fields})
-             .then(() => {
-                 this.dispatchEvent(
-                     new ShowToastEvent({
-                         title: 'Success!!',
-                         message: ' Visit added Successfully!!.',
-                         variant: 'success'
-                     })
-                 );
-                 return refreshApex(this.refreshTable);})
-             .catch(error => {
-                 this.dispatchEvent(
-                     new ShowToastEvent({
-                         title: 'Error adding visit',
-                         message: error.body.message,
-                         variant: 'error'
-                     })
-                 );this.aShowModal = false;
-             });
-     }*/
 }
