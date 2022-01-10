@@ -7,8 +7,8 @@ public with sharing class visitController {
     @AuraEnabled(cacheable=true)
     public static List <Visit__c> getVisits() {
         List <Visit__c> visits=   [
-                SELECT  Id,  Who_took_the_kid__c, Who_was_with_kid__c, Leaving_Time__c, Arriving_Time__c, CreatedDate, Kid__c, Kid__r.FirstName, Kid__r.LastName, LastModifiedDate
-                FROM Visit__c
+                SELECT  Id, Who_took_the_kid__c, Who_took_the_kid__r.FirstName, Who_took_the_kid__r.LastName, Who_was_with_kid__c, Who_was_with_kid__r.FirstName, Who_was_with_kid__r.LastName, CreatedDate, Kid__c, Kid__r.FirstName, Kid__r.LastName, LastModifiedDate
+                FROM Visit__c WHERE CreatedDate = TODAY
         ];
         return visits;
         }
@@ -17,7 +17,7 @@ public with sharing class visitController {
     public static void deleteVisits(List <Id> visitsIds){
         try {
             List<Visit__c> lstVisitsToDelete = new List<Visit__c>();
-            System.debug('lstConIds ====> '+visitsIds);
+            System.debug('visitsIds ====> '+visitsIds);
             for(Id idVis : visitsIds) {
                 lstVisitsToDelete.add(new Visit__c(Id = idVis));
             }
