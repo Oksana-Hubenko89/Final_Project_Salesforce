@@ -8,16 +8,16 @@
                                   type="button"
                                   name="openModal"
                                   label="Add new visit"
-                onclick={addCurrentRecord}></lightning-button>
+                                  onclick={addCurrentRecord}></lightning-button>
             </div>
             <div></div>
             <template if:true={data}>
                 <c-custom-datatable data={data}
-                                     columns={columns}
-                                     key-field="id"
-                                     hide-checkbox-column="true"
-                                     show-row-number-column="true"
-                                     onrowaction={handleRowActions}></c-custom-datatable>
+                                    columns={columns}
+                                    key-field="id"
+                                    hide-checkbox-column="true"
+                                    show-row-number-column="true"
+                                    onrowaction={handleRowActions}></c-custom-datatable>
             </template>
         </div>
 
@@ -51,11 +51,11 @@
                             <dd class="slds-item_detail slds-truncate">{record.Kid__r.LastName}</dd>
                             <dt class="slds-item_label slds-truncate" title="Arriving Time">Arriving Time:</dt>
                             <dd class="slds-item_detail slds-truncate"><lightning-formatted-date-time hour="2-digit"
-                                                                                                      minute="2-digit" hour24="true"
+                                                                                                      minute="2-digit" hour12="true"
                                                                                                       value={record.CreatedDate}></lightning-formatted-date-time></dd>
                             <dt class="slds-item_label slds-truncate" title="Leaving Time">Leaving Time :</dt>
                             <dd class="slds-item_detail slds-truncate"><lightning-formatted-date-time hour="2-digit"
-                                                                                                      minute="2-digit" hour24="true" value={record.LastModifiedDate}></lightning-formatted-date-time></dd>
+                                                                                                      minute="2-digit" hour12="true" value={record.LastModifiedDate}></lightning-formatted-date-time></dd>
                         </dl>
                     </div>
                     <!-- showing record edit form -->
@@ -126,7 +126,7 @@
                                           title="Close"
                                           onclick={closeModal}></lightning-button>
                     </footer>
-                    </div>
+                </div>
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
         </template>
