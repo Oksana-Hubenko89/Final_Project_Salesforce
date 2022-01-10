@@ -2,5 +2,87 @@
  - Created by oksan on 09-Jan-22.
  -->
 
-<apex:page id="EmailPDFVisit">
+<apex:page  controller="EmailPDFVisitController"  applyHtmlTag="false" showHeader="false" renderAs="PDF">
+<html>
+    <head>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            .heading{
+                font-weight: bold;
+            }
+            .heading--main{
+                font-size:36px;
+            }
+            .heading--sub{
+                font-size: 21px;
+            }
+            .box--half{
+                float:left;
+                width:50% ;
+            }
+            .box--full{
+                float:left;
+                width:100% ;
+            }
+            table{
+                border-collapse: collapse;
+                margin-top: 25px;
+                width: 100%;
+            }
+            th{
+                background-color: #92d5f0;
+                font-size:14px;
+                font-weight: bold;
+                padding: 5px;
+            }
+            td{
+                font-size: 12px;
+                padding: 5px;
+                text-align: left;
+                width:24% ;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="heading heading--main">
+            Visiting Kindergarten "The Sun"
+        </h1>
+    <div class="box--half">
+        <h2 class="heading heading--sub">
+            Information for:
+        </h2>
+        <h3 class="heading heading--sub">
+            {!message}
+        </h3>
+
+         <apex:repeat value="{!visits}" var="contact">
+            <span> {!contact.Kid__r.Parent__r.FirstName}&nbsp;{!contact.Kid__r.Parent__r.LastName}</span><br/>
+         </apex:repeat>
+
+    </div>
+        <div class="box--full">
+            <h3 class="heading heading--sub">
+                List of children who are in the kindergarten:
+            </h3>
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date</th>
+                    <th>Who was with kid</th>
+                </tr>
+            <apex:repeat value="{!visits}" var="visit">
+                <tr>
+                    <td>{!visit.Kid__r.FirstName}</td>
+                    <td>{!visit.Kid__r.LastName}</td>
+                    <td>{!visit.CreatedDate}</td>
+                    <td>{!visit.Who_was_with_kid__r.FirstName}&nbsp;{!visit.Who_was_with_kid__r.LastName}</td>
+                </tr>
+            </apex:repeat>
+        </table>
+        </div>
+    </body>
+</html>
 </apex:page>
