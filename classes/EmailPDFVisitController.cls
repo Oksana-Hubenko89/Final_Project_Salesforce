@@ -8,10 +8,10 @@ public class  EmailPDFVisitController  {
     public List <Visit__c> visits {get; set;}
 
     public emailPDFVisitController (){
-     //   String contactId = ApexPages.currentPage().getParameters().get('contactId');
+        String contactId = ApexPages.currentPage().getParameters().get('contactId');
         message = ApexPages.currentPage().getParameters().get('message');
 
-        this.contacts = [ SELECT  Id, FirstName, LastName FROM Contact WHERE  RecordType.Name =: 'Parent' ];
+        this.contacts = [ SELECT  Id, FirstName, LastName FROM Contact WHERE  RecordType.Name =: 'Parent' AND Id=: contactId ];
         this.visits = [SELECT Id, Name, Kid__r.FirstName, Kid__r.LastName, Kid__r.Name, Kid__r.Parent__r.FirstName,Kid__r.Parent__r.LastName,   CreatedDate, LastModifiedDate, Who_was_with_kid__r.FirstName, Who_was_with_kid__r.LastName FROM Visit__c WHERE CreatedDate = TODAY];
     }
 
