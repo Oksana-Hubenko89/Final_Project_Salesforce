@@ -23,7 +23,7 @@ public with sharing class ContactTriggerHandler {
         ]).keySet();
         for (Contact record : pars) {
             if (moreThan5Kids.contains(record.Group__c)) {
-                record.Group__c.addError('You may not have more than 5 kids per group.');
+                record.Group__c.addError('You may not have more than '+ numKids +' kids per group.');
             }
         }
     }
