@@ -611,14 +611,14 @@
         <members>Campaign.AllActiveCampaigns</members>
         <members>Campaign.MyActiveCampaigns</members>
         <members>CardPaymentMethod.CardPaymentMethod</members>
-        <members>Case.AllClosedCases</members>
+       <members>Case.AllClosedCases</members>
         <members>Case.AllOpenCases</members>
         <members>Case.MyCases</members>
-        <members>Case.MyOpenCases</members>
+        <members>Case.MyOpenCases</members>-->
         <members>Case__c.All</members>
         <members>CollaborationGroup.All_ChatterGroups</members>
         <members>CommSubscription.All_CommSubscriptions</members>
-        <members>CommSubscriptionChannelType.All_CommSubscriptionChannelTypes</members>
+       <members>CommSubscriptionChannelType.All_CommSubscriptionChannelTypes</members>
         <members>CommSubscriptionConsent.All_CommSubscriptionConsents</members>
         <members>CommSubscriptionTiming.All_CommSubscriptionTimings</members>
         <members>ConsumptionSchedule.All_ConsumptionSchedules</members>
@@ -678,7 +678,7 @@
         <members>PaymentAuthAdjustment.PaymentAuthAdjustment</members>
         <members>PaymentAuthorization.PaymentAuthorization</members>
         <members>PaymentGateway.PaymentGateway</members>
-        <members>PaymentGroup.PaymentGroup</members>
+       <members>PaymentGroup.PaymentGroup</members>
         <members>PaymentLineInvoice.PaymentLineInvoice</members>
         <members>ProcessException.all_process_exceptions</members>
         <members>Product2.AllProducts</members>

@@ -1,8 +1,7 @@
 import { LightningElement, track, api, wire} from 'lwc';
 import {ShowToastEvent} from "lightning/platformShowToastEvent";
-//import { deleteRecord } from 'lightning/uiRecordApi';
-import getVisits from '@salesforce/apex/visitController.getVisits';
-import deleteVisits from '@salesforce/apex/visitController.deleteVisits';
+import getVisits from '@salesforce/apex/VisitController.getVisits';
+import deleteVisits from '@salesforce/apex/VisitController.deleteVisits';
 import {refreshApex} from '@salesforce/apex';
 
 const actions = [
@@ -100,12 +99,7 @@ export default class Visit extends LightningElement {
     }
     handleRowActions(event) {
         let actionName = event.detail.action.name;
-
-        window.console.log('actionName ====> ' + actionName);
-
         let row = event.detail.row;
-
-        window.console.log('row ====> ' + row);
 
         switch (actionName) {
             case 'record_details':
@@ -115,7 +109,7 @@ export default class Visit extends LightningElement {
                 this.editCurrentRecord(row);
                 break;
             case 'delete':
-                this.deleteVis(row);
+                this.deleteVisit(row);
                 break;
         }
     }
@@ -141,7 +135,7 @@ export default class Visit extends LightningElement {
         this.isAddForm = true;
 
     }
-    handleSubmit(event) {
+    updateVisit(event) {
         event.preventDefault();
         this.template.querySelector('lightning-record-edit-form').submit(event.detail.fields);
         this.bShowModal = false;
@@ -151,7 +145,7 @@ export default class Visit extends LightningElement {
             variant: 'success'
         }),);
     }
-    AddVisit(event) {
+    addVisit(event) {
         event.preventDefault();
         this.template.querySelector('lightning-record-edit-form').submit(event.detail.fields);
         this.aShowModal = false;
@@ -164,14 +158,13 @@ export default class Visit extends LightningElement {
     handleSuccess() {
         return refreshApex(this.refreshTable);
     }
-    deleteVis(currentRow) {
+    deleteVisit(currentRow) {
         let currentRecord = [];
         currentRecord.push(currentRow.Id);
         this.showLoadingSpinner = true;
 
         deleteVisits({visitsIds: currentRecord})
             .then(result => {
-                window.console.log('result ====> ' + result);
                 this.showLoadingSpinner = false;
 
                 this.dispatchEvent(new ShowToastEvent({
@@ -184,7 +177,6 @@ export default class Visit extends LightningElement {
 
             })
             .catch(error => {
-                window.console.log('Error ====> '+error);
                 this.dispatchEvent(new ShowToastEvent({
                     title: 'Error!!',
                     message: error.message,

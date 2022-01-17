@@ -2,12 +2,12 @@
  * Created by oksan on 06-Jan-22.
  */
 
-public with sharing class visitController {
+public with sharing class VisitController {
 
     @AuraEnabled(cacheable=true)
     public static List <Visit__c> getVisits() {
         List <Visit__c> visits=   [
-                SELECT  Id, Who_took_the_kid__c, Who_took_the_kid__r.FirstName, Who_took_the_kid__r.LastName, Who_was_with_kid__c, Who_was_with_kid__r.FirstName, Who_was_with_kid__r.LastName, CreatedDate, Kid__c, Kid__r.FirstName, Kid__r.LastName, LastModifiedDate
+                SELECT  Id, Who_took_the_kid__c, Who_was_with_kid__c, CreatedDate, Kid__c, Kid__r.FirstName, Kid__r.LastName, LastModifiedDate
                 FROM Visit__c WHERE CreatedDate = TODAY
         ];
         return visits;

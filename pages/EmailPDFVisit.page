@@ -51,14 +51,17 @@
         </h1>
     <div class="box--half">
         <h2 class="heading heading--sub">
-            Information for:
+            Information:
         </h2>
         <h3 class="heading heading--sub">
-            {!message}
+                {!message}
+        </h3>
+        <h3 class="heading heading--sub">
+            Parents:
         </h3>
 
-         <apex:repeat value="{!visits}" var="contact">
-            <span> {!contact.Kid__r.Parent__r.FirstName}&nbsp;{!contact.Kid__r.Parent__r.LastName}</span><br/>
+         <apex:repeat value="{!contacts}" var="contact">
+            <span> {!contact.FirstName}&nbsp;{!contact.LastName}</span><br/>
          </apex:repeat>
 
     </div>

@@ -60,7 +60,7 @@
                     </div>
                     <!-- showing record edit form -->
                     <div if:true={isEditForm} class="slds-theme_default">
-                        <lightning-record-edit-form layout-type="Full" record-id={currentRecordId} object-api-name="Visit__c" onsubmit={handleSubmit} onsuccess={handleSuccess}>
+                        <lightning-record-edit-form layout-type="Full" record-id={currentRecordId} object-api-name="Visit__c" onsubmit={updateVisit} onsuccess={handleSuccess}>
                             <lightning-messages></lightning-messages>
                             <lightning-output-field field-name="Kid__c"></lightning-output-field>
                             <lightning-output-field field-name="Who_was_with_kid__c"></lightning-output-field>
@@ -104,7 +104,7 @@
                     </header>
                     <!-- showing record add form -->
                     <div if:true={isAddForm} class="slds-theme_default">
-                        <lightning-record-edit-form layout-type="Full"  object-api-name="Visit__c" onsubmit={AddVisit} onsuccess= {handleSuccess}>
+                        <lightning-record-edit-form layout-type="Full"  object-api-name="Visit__c" onsubmit={addVisit} onsuccess= {handleSuccess}>
                             <lightning-messages></lightning-messages>
                             <lightning-input-field field-name="Kid__c"></lightning-input-field>
                             <lightning-input-field field-name="Who_was_with_kid__c"></lightning-input-field><br/>

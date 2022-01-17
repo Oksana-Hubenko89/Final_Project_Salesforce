@@ -11,8 +11,8 @@ public class  EmailPDFVisitController  {
         String contactId = ApexPages.currentPage().getParameters().get('contactId');
         message = ApexPages.currentPage().getParameters().get('message');
 
-        this.contacts = [ SELECT  Id, FirstName, LastName FROM Contact WHERE  RecordType.Name =: 'Parent' AND Id=: contactId ];
-        this.visits = [SELECT Id, Name, Kid__r.FirstName, Kid__r.LastName, Kid__r.Name, Kid__r.Parent__r.FirstName,Kid__r.Parent__r.LastName,   CreatedDate, LastModifiedDate, Who_was_with_kid__r.FirstName, Who_was_with_kid__r.LastName FROM Visit__c WHERE CreatedDate = TODAY];
+        this.contacts = [ SELECT  Id, FirstName, LastName FROM Contact WHERE  Id =: contactId  OR RecordType.Name =: 'Parent'];
+        this.visits = [SELECT Id, Name, Kid__r.FirstName, Kid__r.LastName, CreatedDate, LastModifiedDate, Who_was_with_kid__r.FirstName, Who_was_with_kid__r.LastName FROM Visit__c WHERE CreatedDate = TODAY];
     }
 
     @InvocableMethod(Label='Email Report PDF' Description='Generate and Emails an Report PDF')
@@ -37,6 +37,7 @@ public class  EmailPDFVisitController  {
         mail.setSubject('Report PDF');
         mail.setHtmlBody('Here\'s the Report PDF you requested.');
         mail.setFileAttachments(new Messaging.EmailFileAttachment[] {attachment});
+
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
 
     }

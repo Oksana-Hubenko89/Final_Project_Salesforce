@@ -17,8 +17,6 @@ private class TestContacTriggerHandler {
         }
         insert contacts;
 
-        System.debug(contacts);
-
         Contact newCon= new Contact(
                 LastName='TestName', Group__c = grou.Id
         );
