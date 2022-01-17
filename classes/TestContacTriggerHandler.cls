@@ -3,7 +3,7 @@
  */
 
 @IsTest
-private class TestNumberContactsInGroupTriggerHandler {
+private class TestContacTriggerHandler {
     @IsTest
     static void testBehavior() {
         Group__c grou= new Group__c(Name='Test Group' );

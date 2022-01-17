@@ -2,7 +2,7 @@
  * Created by oksan on 05-Jan-22.
  */
 
-public with sharing class NumberContactsKidsInGroupTriggerHandler {
+public with sharing class ContactTriggerHandler {
 
     public static void UpdateGroup(List <Contact> pars) {
         Set<Id> contactId = new Set<Id>();
