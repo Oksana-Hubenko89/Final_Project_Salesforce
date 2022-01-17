@@ -10,12 +10,16 @@ public with sharing class ContactTriggerHandler {
             contactId.add(con.Group__c);
         }
         contactId.remove(null);
+
+        Group__c num=[SELECT Number_of_children__c FROM Group__c WHERE Id=:contactId];
+        Integer numKids = num.Number_of_children__c.intValue();
+
         Set<Id> moreThan5Kids = new Map<Id, AggregateResult>([
                 SELECT Group__c Id
                 FROM Contact
                 WHERE Group__c = :contactId
                 GROUP BY Group__c
-                HAVING COUNT(Id) > 5
+                HAVING COUNT(Id) > : numKids
         ]).keySet();
         for (Contact record : pars) {
             if (moreThan5Kids.contains(record.Group__c)) {
